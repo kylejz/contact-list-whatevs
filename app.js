@@ -2,7 +2,6 @@ var app = angular.module("contacts", ["firebase"]);
 
 app.controller("ctrl", function($scope, $firebaseArray, $firebaseObject) {
 	
-	$scope.showExplosion = false;
 	$scope.showModal = false;
 	$scope.showEditForm = false;
 	$scope.showNewForm = false;
@@ -25,11 +24,11 @@ app.controller("ctrl", function($scope, $firebaseArray, $firebaseObject) {
 	};
 
 	$scope.deleteContact = function(obj) {
-		$scope.showExplosion = true;
+		obj.showExplosion = true;
 		setTimeout(function() {	
 			$scope.contactList.$remove(obj)
 			.then(function(response) {
-				$scope.showExplosion = false;
+				obj.showExplosion = false;
 			});
 		}, 500);
 	};

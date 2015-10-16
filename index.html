@@ -35,13 +35,16 @@
 				</div>
 
 				<div ng-repeat="contact in contactList | filter: filterText | orderBy: orderParam : reverse" class="relative fullW">
-					<img src="images/explosion.gif" ng-class="{hidden: !showExplosion, explosion: showExplosion}" />
 					<div class="hangLeft">
 						<i class="fa fa-bomb" ng-click="deleteContact(contact)"></i>
 						<i class="fa fa-pencil" ng-click="editContact(contact)"></i>
 					</div>
 					<div class="bodyRow">
-						<div class="cell">{{contact.firstName}}</div>
+						<div class="cell relative">
+							<img src="images/explosion.gif" ng-class="{hidden: !contact.showExplosion, explosion: contact.showExplosion}" />
+							{{contact.firstName}}
+						</div>
+
 						<div class="cell">{{contact.lastName}}</div>
 						<div class="cell">{{contact.number}}</div>
 						<div class="cell">{{contact.email}}</div>
