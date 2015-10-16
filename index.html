@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My flipping contacts!</title>
+	<link rel="stylesheet" type="text/css" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link href='https://fonts.googleapis.com/css?family=Cutive+Mono|Playball' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body ng-app="contacts" class="relative">
+
+	<div class="coverAll" ng-show="showEditForm"></div>
+
+	<section ng-controller="ctrl" class="relative">
+		
+		<header>
+
+			<div class="filler"></div>
+			<div class="headerFlex">
+				<div class="los">los</div>
+				<div class="contacts">Contacts</div>
+			</div>
+
+		</header>
+
+		<section class="mainSection relative">
+
+			<div>
+				<div class="flex headerRow">
+					<div class="headerCell relative" ng-repeat="item in headers" ng-click="setOrderParam(item.send); changeReverse()">
+						<div>{{item.show}}</div> 
+						<i class="fa fa-caret-down headerArrow" ng-show="reverse && orderParam === item.send"></i>
+						<i class="fa fa-caret-up headerArrow" ng-show="!reverse && orderParam === item.send"></i>
+					</div>
+				</div>
+
+				<div ng-repeat="contact in contactList | filter: filterText | orderBy: orderParam : reverse" class="relative fullW">
+					<img src="images/explosion.gif" ng-class="{hidden: !showExplosion, explosion: showExplosion}" />
+					<div class="hangLeft">
+						<i class="fa fa-bomb" ng-click="deleteContact(contact)"></i>
+						<i class="fa fa-pencil" ng-click="editContact(contact)"></i>
+					</div>
+					<div class="bodyRow">
+						<div class="cell">{{contact.firstName}}</div>
+						<div class="cell">{{contact.lastName}}</div>
+						<div class="cell">{{contact.number}}</div>
+						<div class="cell">{{contact.email}}</div>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<section class="bottomSection">
+			
+			<div>
+				<form ng-submit="addContact(newContact)">
+					<input type="text" ng-model="newContact.firstName" placeholder="first name" required /> <br>
+					<input type="text" ng-model="newContact.lastName" placeholder="last name" required /> <br>
+					<input type="text" ng-model="newContact.number" placeholder="phone number" /> <br>
+					<input type="text" ng-model="newContact.email" placeholder="email" /> <br>
+					<button>add</button>
+				</form>
+				<form class="editForm" ng-submit="changeContact(editedContact)" ng-show="showEditForm">
+					<div class="editForm__title">Edit this chiz!</div>
+					<div class="flex">
+						<div class="leftText">
+							<div>First name: </div>
+							<div>Last name: </div>
+							<div>Phone Number: </div>
+							<div>Email Address: </div>
+						</div>
+						<div class="inputHolder">
+							<input type="text" ng-model="editedContact.firstName" required /> <br>
+							<input type="text" ng-model="editedContact.lastName" required /> <br>
+							<input type="text" ng-model="editedContact.number" /> <br>
+							<input type="text" ng-model="editedContact.email" /> <br>
+						</div>
+					</div>
+					<div class="flex btnRow">	
+						<button>submit</button>
+						<button ng-click="cancelForm()">cancel</button>
+					</div>
+				</form>
+			</div>
+
+			<input type="text" placeholder="filter contacts"
+					ng-model="filterText"/>
+
+		</section>
+		<div class="coverAll" ng-show="showEditForm"></div>
+	</section>
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
+<script type="text/javascript" src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+<script type="text/javascript" src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
