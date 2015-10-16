@@ -128,6 +128,10 @@ header {
 	display: flex;
 }
 
+.hangLeft i:hover {
+	color: #0E91FF;
+}
+
 .editForm {
 	position: fixed;
 	top: 20%;
@@ -164,7 +168,6 @@ header {
 	background: rgba(255, 211, 0, 1);
 	color: white;
 	border: 1px solid white;
-	font-style: italic;
 }
 
 .leftText {
@@ -173,10 +176,26 @@ header {
 	margin-right: 5px;
 }
 
+.leftText div {
+	margin-bottom: 10px;
+}
+
 .inputHolder input {
 	border: none;
 	border-bottom: 1px solid #777;
 	background: transparent;
+	margin-bottom: 10px;
+}
+
+.btnRow {
+	padding: 10px;
+	position: absolute;
+	bottom: 20px;
+	right: 15px;
+}
+
+.btnRow button {
+	margin-left: 10px;
 }
 
 .coverAll {
@@ -191,7 +210,7 @@ header {
 
 .mainSection {
 	margin: 0 auto;
-	margin-top: 210px;
+	margin-top: 230px;
 	width: 80%;
 	border: 1px solid #e1e1e1;
 	border-radius: 4px;
@@ -200,13 +219,6 @@ header {
 }
 
 .bottomSection {
-	margin: 0 auto;
-	margin-top: 20px;
-	width: 80%;
-	border: 1px solid #e1e1e1;
-	border-radius: 4px;
-	background: rgba(255, 255, 255, 0.25);
-	padding: 20px 40px;
 }
 
 .headerRow {
@@ -235,4 +247,29 @@ header {
 
 .fullW {
 	width: 100%;
+}
+
+.filterBar {
+	display: flex;
+	justify-content: space-between;
+	margin: 2px 0;
+}
+
+.filterBar button {
+	color: white;
+	background: rgba(14, 145, 255, 0.7);
+	border: none;
+	font-family: 'Playball';
+	padding: 5px 10px;
+	border-radius: 4px;
+}
+
+.filterBar button:hover {
+	background: rgba(14, 145, 255, 1);
+}
+
+.filterBar input {
+	border: none;
+	border-bottom: 1px solid #777;
+	background: transparent;
 }

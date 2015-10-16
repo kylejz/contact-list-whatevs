@@ -5,16 +5,22 @@ app.controller("ctrl", function($scope, $firebaseArray, $firebaseObject) {
 	$scope.showExplosion = false;
 	$scope.showModal = false;
 	$scope.showEditForm = false;
+	$scope.showNewForm = false;
 	$scope.reverse = false;
 	$scope.orderParam = "";
 
 	var ref = new Firebase("http://interview-contacts.firebaseio.com/contacts");
 	$scope.contactList = $firebaseArray(ref);
 
+	$scope.addNewContact = function() {
+		$scope.showNewForm = true;
+	}
+
 	$scope.addContact = function(obj) {
 		$scope.contactList.$add(obj)
 		.then(function(response) {
 			$scope.newContact = null;
+			$scope.showNewForm = false;
 		});
 	};
 
@@ -50,9 +56,14 @@ app.controller("ctrl", function($scope, $firebaseArray, $firebaseObject) {
 		}
 	};
 
-	$scope.cancelForm = function() {
+	$scope.cancelEditForm = function() {
 		$scope.showEditForm = false;
 		$scope.editedContact = null;
+	}
+
+	$scope.cancelNewForm = function() {
+		$scope.showNewForm = false;
+		$scope.newContact = null;
 	}
 
 	$scope.headers = [
